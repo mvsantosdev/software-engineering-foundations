@@ -34,7 +34,14 @@ mkdir -p ~/.config/opencode/skills
 cp -r software-engineering-foundations ~/.config/opencode/skills/
 ```
 
-OpenCode discovers `.opencode/skills/<id>/SKILL.md` automatically.
+Windows (PowerShell):
+
+```powershell
+New-Item -ItemType Directory -Force .opencode/skills | Out-Null
+Copy-Item -Recurse software-engineering-foundations .opencode/skills/
+```
+
+OpenCode discovers `.opencode/skills/<id>/SKILL.md` automatically. No dependencies to install.
 
 ## Use
 
