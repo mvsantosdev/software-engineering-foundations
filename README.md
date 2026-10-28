@@ -53,6 +53,21 @@ npx skills update software-engineering-foundations
 npx skills remove software-engineering-foundations
 ```
 
+### Supported harnesses
+
+The CLI picks the right directory for each agent. The main ones:
+
+| Harness | Project path | Global path |
+| --- | --- | --- |
+| OpenCode | `.agents/skills/` | `~/.config/opencode/skills/` |
+| Claude Code | `.claude/skills/` | `~/.claude/skills/` |
+| Codex | `.agents/skills/` | `~/.agents/skills/` |
+| Cursor | `.agents/skills/` | `~/.cursor/skills/` |
+| GitHub Copilot | `.agents/skills/` | `~/.copilot/skills/` |
+| Gemini CLI | `.agents/skills/` | `~/.gemini/skills/` |
+
+Run `npx skills add mvsantosdev/software-engineering-foundations --list` to see the skill without installing, or check the [full agent list](https://github.com/vercel-labs/skills/blob/main/docs/agents.md).
+
 ### Manual install
 
 Copy this directory into any agent's skills folder — `.opencode/skills/`, `.claude/skills/`, `.agents/skills/`, or the equivalent. The directory name becomes the skill ID.
@@ -88,6 +103,40 @@ software-engineering-foundations/
 ```
 
 `SKILL.md` carries the order and guardrails. References load only when their foundation is being worked on, so a fix does not drag the other four into context.
+
+## Distribution and discovery
+
+This repository is the package. The Agent Skills CLI reads `SKILL.md` from the repository root, so there is no build step and no npm publication required. Pushing to `main` is enough to ship a new version.
+
+- Directory page: [skills.sh/mvsantosdev/software-engineering-foundations](https://skills.sh/mvsantosdev/software-engineering-foundations)
+- Search: `npx skills find "software engineering foundations"`
+- The listing follows installs; there is no submission form. A new crawl picks up frontmatter changes.
+
+### Optional: npm distribution
+
+Only useful if you want dependency-based installs (`npm:`) or `npx skills experimental_sync`. Add a `package.json` that ships the skill files:
+
+```json
+{
+  "name": "@mvsantosdev/software-engineering-foundations",
+  "version": "0.1.0",
+  "files": ["SKILL.md", "references/", "README.md", "LICENSE"]
+}
+```
+
+```sh
+npm publish --access public
+```
+
+Consumers then install the package as a dependency and run `npx skills experimental_sync -y`, or declare it in their project:
+
+```json
+{
+  "skills": ["npm:@mvsantosdev/software-engineering-foundations"]
+}
+```
+
+For one-off installs, `npx skills add` remains simpler and has no package to maintain.
 
 ## Origin and attribution
 
