@@ -1,6 +1,6 @@
 # Software Engineering Foundations for AI-Built Apps
 
-An [OpenCode](https://opencode.ai) skill that audits and fixes apps built with AI (vibe coding) against five foundations. It turns the checklist into a workflow: read-only audit first, then fixes in the order that keeps you safe.
+An agent skill for apps built with AI (vibe coding), covering five foundations. It turns the checklist into a workflow: read-only audit first, then fixes in the order that keeps you safe. Works with any harness supported by the [Agent Skills CLI](https://github.com/vercel-labs/skills) — OpenCode, Claude Code, Codex, Cursor, GitHub Copilot, Gemini CLI, and 75+ more.
 
 ## Why
 
@@ -20,28 +20,54 @@ AI-generated apps tend to ship with the same five defects:
 
 ## Install
 
-Project-local:
+Requires Node.js 22.20 or later. The [Agent Skills CLI](https://github.com/vercel-labs/skills) detects your installed agents and installs to the right directory for each one.
+
+```sh
+# Project-local (default), shared with the team
+npx skills add mvsantosdev/software-engineering-foundations
+
+# Global, available in every project
+npx skills add mvsantosdev/software-engineering-foundations -g
+```
+
+Non-interactive, targeting specific harnesses:
+
+```sh
+npx skills add mvsantosdev/software-engineering-foundations -g -a claude-code -a opencode -y
+```
+
+Useful flags:
+
+| Flag | Effect |
+| --- | --- |
+| `--list` | Show the skills in the repo without installing |
+| `-a, --agent` | Target specific harnesses; omit to choose interactively |
+| `-g, --global` | Install for the user instead of the project |
+| `--copy` | Copy files instead of symlinking (needed on Windows without Developer Mode) |
+| `-y, --yes` | Skip prompts, for CI |
+
+Update or remove later:
+
+```sh
+npx skills update software-engineering-foundations
+npx skills remove software-engineering-foundations
+```
+
+### Manual install
+
+Copy this directory into any agent's skills folder — `.opencode/skills/`, `.claude/skills/`, `.agents/skills/`, or the equivalent. The directory name becomes the skill ID.
 
 ```sh
 mkdir -p .opencode/skills
 cp -r software-engineering-foundations .opencode/skills/
 ```
 
-Global:
-
-```sh
-mkdir -p ~/.config/opencode/skills
-cp -r software-engineering-foundations ~/.config/opencode/skills/
-```
-
-Windows (PowerShell):
+On Windows (PowerShell):
 
 ```powershell
 New-Item -ItemType Directory -Force .opencode/skills | Out-Null
 Copy-Item -Recurse software-engineering-foundations .opencode/skills/
 ```
-
-OpenCode discovers `.opencode/skills/<id>/SKILL.md` automatically. No dependencies to install.
 
 ## Use
 

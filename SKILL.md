@@ -1,5 +1,5 @@
 ---
-name: Software Engineering Foundations for AI-Built Apps
+name: software-engineering-foundations
 description: Audit and fix AI-built (vibe-coded) apps across five foundations — integration tests, client trust and RLS, race conditions, idempotency, and separation of concerns. Use when reviewing an AI-generated app, or when investigating duplicate orders, negative stock, coupons used twice, repeated webhooks, double-credited balances, secrets in the frontend, prices calculated client-side, oversized files, or missing tests.
 ---
 
