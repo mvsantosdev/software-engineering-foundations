@@ -109,7 +109,7 @@ software-engineering-foundations/
 This repository is the package. The Agent Skills CLI reads `SKILL.md` from the repository root, so there is no build step and no npm publication required. Pushing to `main` is enough to ship a new version.
 
 - Directory page: [skills.sh/mvsantosdev/software-engineering-foundations](https://skills.sh/mvsantosdev/software-engineering-foundations)
-- Search: `npx skills find "software engineering foundations"`
+- Search (once the registry indexes it): `npx skills find "software engineering foundations"`
 - The listing follows installs; there is no submission form. A new crawl picks up frontmatter changes.
 
 ### Optional: npm distribution
